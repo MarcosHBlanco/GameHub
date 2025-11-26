@@ -5,17 +5,28 @@ require_once __DIR__ . '/inc/functions.php';
 $pageTitle='Add Game'; 
 $errors=[]; 
 $form=['title'=>'','platform'=>'','notes'=>'','cover_url'=>'','favorite'=>0,'played'=>0];
-if($_SERVER['REQUEST_METHOD']==='POST'){
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   csrf_check(); 
-  [$errors,$form]=validate_game($_POST);
-  if(!$errors){
-    $stmt=db()->prepare("INSERT INTO games(title,platform,notes,cover_url,favorite,played,created_at) VALUES(:t,:p,:n,:c,:f,:pl,NOW())");
-    $stmt->execute([':t'=>$form['title'],':p'=>$form['platform'],':n'=>$form['notes'],':c'=>$form['cover_url'],':f'=>$form['favorite'],':pl'=>$form['played']]);
+  [$errors, $form] = validate_game($_POST);
+  if (!$errors) {
+    $stmt = db()->prepare(
+      "INSERT INTO games(title, platform, notes, cover_url, favorite, played)
+       VALUES(:t, :p, :n, :c, :f, :pl)"
+    );
+    $stmt->execute([
+      ':t'  => $form['title'],
+      ':p'  => $form['platform'],
+      ':n'  => $form['notes'],
+      ':c'  => $form['cover_url'],
+      ':f'  => $form['favorite'],
+      ':pl' => $form['played'],
+    ]);
     flash('Game added!'); 
     header('Location: index.php'); 
     exit;
   }
 }
+
 include __DIR__ . '/inc/header.php';
 ?>
 <section class="card"><h2>Add Game</h2>

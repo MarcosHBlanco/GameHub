@@ -3,35 +3,52 @@ require_once __DIR__ . '/../config.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
-//Check for user query
+// Check for user query (?q=...)
 $q = isset($_GET['q']) ? trim($_GET['q']) : '';
-if($q === '') {
-  echo json_encode(['results' => []] ); 
+if ($q === '') {
+  echo json_encode(['results' => []]);
   exit;
 }
 
 $key = getenv('RAWG_API_KEY');
-
-if($key === ''){
-  echo json_encode(['results' => [], 'error' => 'Missing RAWG_API_KEY in config.php']); 
+if ($key === '' || $key === false) {
+  echo json_encode([
+    'results' => [],
+    'error'   => 'Missing RAWG_API_KEY in environment'
+  ]);
   exit;
 }
 
-//build RAWG url
-$url = 'https://api.rawg.io/api/games?key=' . urlencode($key) . '&search=' . urlencode($q) . '&page_size=20';
+// Build RAWG URL with search_precise=true
+$params = [
+  'key'            => $key,
+  'search'         => $q,
+  'page_size'      => 20,
+  'search_precise' => true,  
+];
 
-$options = ['http' => ['method' => 'GET', 'timeout' => 5, 'header' => "User-Agent: cpsc2030-simple\n"]];
+$url = 'https://api.rawg.io/api/games?' . http_build_query($params);
+
+$options = [
+  'http' => [
+    'method'  => 'GET',
+    'timeout' => 5,
+    'header'  => "User-Agent: cpsc2030-simple\r\n",
+  ],
+];
+
 $context = stream_context_create($options);
-$json = @file_get_contents($url, false, $context);
-if($json === false){
-  echo json_encode(['results' => []]); 
+$json    = @file_get_contents($url, false, $context);
+
+if ($json === false) {
+  echo json_encode(['results' => []]);
   exit;
 }
 
 $data = json_decode($json, true);
-$out = [];
+$out  = [];
 
-if (!empty($data['results'])) {
+if (!empty($data['results']) && is_array($data['results'])) {
   foreach ($data['results'] as $game) {
     $title = $game['name'] ?? '';
 
@@ -54,12 +71,11 @@ if (!empty($data['results'])) {
     if ($title !== '') {
       $out[] = [
         'title'     => $title,
-        'platform'  => $platform,  
-        'cover_url' => $cover
+        'platform'  => $platform,
+        'cover_url' => $cover,
       ];
     }
   }
 }
 
 echo json_encode(['results' => $out], JSON_UNESCAPED_SLASHES);
-

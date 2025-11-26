@@ -152,6 +152,11 @@ document.addEventListener('DOMContentLoaded', function () {
         metacritic.className = 'badge';
         metacritic.textContent = `Metacritic: ${g.metacritic}`;
         body.appendChild(metacritic);
+      } else {
+        const metacritic = document.createElement('span');
+        metacritic.className = 'badge';
+        metacritic.textContent = `Metacritic: unavailable`;
+        body.appendChild(metacritic);
       }
 
       const released = document.createElement('span');

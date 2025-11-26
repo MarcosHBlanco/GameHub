@@ -4,6 +4,4 @@ define('DB_NAME','cpsc2030-final-game-hub');
 define('DB_USER','root');
 define('DB_PASS','');
 define('CSRF_KEY','csrf_token');
-// RAWG API key (from .env). Falls back to empty if missing.
-define('RAWG_API_KEY', getenv('RAWG_API_KEY') ?: '');
 

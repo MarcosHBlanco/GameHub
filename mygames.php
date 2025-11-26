@@ -28,7 +28,7 @@ $ps=db()->query("SELECT DISTINCT platform FROM games ORDER BY platform")->fetchA
 include __DIR__ . '/inc/header.php';
 ?>
 <section class="toolbar">
-  <form class="filter-row" method="get" action="index.php">
+  <form class="filter-row" method="get" action="mygames.php">
     <label class="sr-only" for="q">Search</label>
     <input id="q" name="q" placeholder="Search title or notes" value="<?= e($q) ?>"/>
     <label class="sr-only" for="platform">Platform</label>

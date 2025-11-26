@@ -1,0 +1,65 @@
+<?php 
+require_once __DIR__ . '/../config.php';
+
+header('Content-Type: application/json; charset=utf-8');
+
+//Check for user query
+$q = isset($_GET['q']) ? trim($_GET['q']) : '';
+if($q === '') {
+  echo json_encode(['results' => []] ); 
+  exit;
+}
+
+//Check for defined key
+$key = defined('RAWG_API_KEY') ? RAWG_API_KEY : '';
+if($key === ''){
+  echo json_encode(['results' => [], 'error' => 'Missing RAWG_API_KEY in config.php']); 
+  exit;
+}
+
+//build RAWG url
+$url = 'https://api.rawg.io/api/games?key=' . urlencode($key) . '&search=' . urlencode($q) . '&page_size=20';
+
+$options = ['http' => ['method' => 'GET', 'timeout' => 5, 'header' => "User-Agent: cpsc2030-simple\n"]];
+$context = stream_context_create($options);
+$json = @file_get_contents($url, false, $context);
+if($json === false){
+  echo json_encode(['results' => []]); 
+  exit;
+}
+
+$data = json_decode($json, true);
+$out = [];
+
+if (!empty($data['results'])) {
+  foreach ($data['results'] as $game) {
+    $title = $game['name'] ?? '';
+
+    // collect platform names
+    $platform = null;
+    if (!empty($game['platforms']) && is_array($game['platforms'])) {
+      $names = [];
+      foreach ($game['platforms'] as $p) {
+        if (!empty($p['platform']['name'])) {
+          $names[] = $p['platform']['name'];
+        }
+      }
+      if ($names) {
+        $platform = implode(', ', array_slice($names, 0, 2));
+      }
+    }
+
+    $cover = $game['background_image'] ?? null;
+
+    if ($title !== '') {
+      $out[] = [
+        'title'     => $title,
+        'platform'  => $platform,  
+        'cover_url' => $cover
+      ];
+    }
+  }
+}
+
+echo json_encode(['results' => $out], JSON_UNESCAPED_SLASHES);
+

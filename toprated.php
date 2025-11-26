@@ -62,6 +62,12 @@ document.addEventListener('DOMContentLoaded', () => {
       h3.textContent = g.name || g.title || '(no title)';
       content.appendChild(h3);
 
+      const rating = document.createElement('span');
+      rating.className = 'badge';
+      const ratingValue = (typeof g.rating === 'number') ? g.rating.toFixed(1) : 'N/A';
+      rating.textContent = '⭐ ' + ratingValue;
+      content.appendChild(rating);
+
       if (genres.length){
         const line = document.createElement('div');
         genres.forEach(name => {

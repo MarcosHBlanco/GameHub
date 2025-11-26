@@ -168,8 +168,9 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       inlineMeta.appendChild(rating);
-      if (released.textContent) inlineMeta.appendChild(released);
-
+      if (released.textContent) {
+        inlineMeta.appendChild(released);
+      }
       // Platforms (first 3)
       let platformsText = '';
       if (Array.isArray(g.platforms)) {

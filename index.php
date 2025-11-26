@@ -146,6 +146,14 @@ document.addEventListener('DOMContentLoaded', function () {
       const ratingValue = (typeof g.rating === 'number') ? g.rating.toFixed(1) : 'N/A';
       rating.textContent = '⭐ ' + ratingValue;
 
+      
+      if(typeof g.metacritic === 'number'){
+        const metacritic = document.createElement('span');
+        metacritic.className = 'badge';
+        metacritic.textContent = `Metacritic: ${g.metacritic}`;
+        body.appendChild(metacritic);
+      }
+
       const released = document.createElement('span');
       if (g.released) {
         released.textContent = 'Released: ' + g.released;

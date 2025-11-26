@@ -10,8 +10,8 @@ if($q === '') {
   exit;
 }
 
-//Check for defined key
-$key = defined('RAWG_API_KEY') ? RAWG_API_KEY : '';
+$key = getenv('RAWG_API_KEY');
+
 if($key === ''){
   echo json_encode(['results' => [], 'error' => 'Missing RAWG_API_KEY in config.php']); 
   exit;

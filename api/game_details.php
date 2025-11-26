@@ -4,7 +4,7 @@ require_once __DIR__ . '/../config.php';
 
 header('Content-Type: application/json; charset=utf-8');
 // read key from .env
-$key = defined('RAWG_API_KEY') ? RAWG_API_KEY : '';
+$key = getenv('RAWG_API_KEY');
 
 $id = isset($_GET['id']) ? trim($_GET['id']) : '';
 

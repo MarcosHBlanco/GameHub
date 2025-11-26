@@ -1,3 +1,5 @@
+Live at: https://gamehub-production-a4fa.up.railway.app/index.php
+
 CPSC 2030 Final — Game Hub (PHP)
 
 Game Hub is a small PHP web application that allows users to search games via the RAWG API, save their personal game list, mark favorites, track played status, and filter/search their own library.

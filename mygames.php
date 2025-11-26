@@ -36,7 +36,7 @@ include __DIR__ . '/inc/header.php';
       <?php foreach($ps as $p): ?><option value="<?= e($p) ?>" <?= $p===$platform?'selected':'' ?>><?= e($p) ?></option><?php endforeach; ?>
     </select>
     <button type="submit">Filter</button>
-    <?php if($q!==''||$platform!==''): ?><a class="link" href="index.php">Clear</a><?php endif; ?>
+    <?php if($q!==''||$platform!==''): ?><a class="link" href="mygames.php">Clear</a><?php endif; ?>
   </form>
 </section>
 <section>

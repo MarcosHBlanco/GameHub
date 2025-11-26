@@ -10,7 +10,8 @@ if(!$game){
   http_response_code(404); 
   exit('Not found'); 
 }
-$errors=[]; $form=$game;
+$errors=[]; 
+$form=$game;
 if($_SERVER['REQUEST_METHOD']==='POST'){
   csrf_check(); 
   [$errors,$data]=validate_game($_POST);

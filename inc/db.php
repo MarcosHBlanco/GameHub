@@ -30,7 +30,7 @@ function db(): PDO {
 
         $dsn = "mysql:host=$host;port=$port;dbname=$db;charset=utf8mb4";
     } else {
-        // 2) Fallback: SQLite (this is what Railway is using right now)
+        // 2) Fallback: SQLite (using for Railway right now)
         $useSqlite = true;
         $path = __DIR__ . '/../data/gamehub.sqlite';
 

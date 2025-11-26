@@ -1,5 +1,5 @@
 <?php
-// inc/header.php
+
 $pageTitle = $pageTitle ?? 'Game Hub (PHP/MySQL)';
 require_once __DIR__ . '/functions.php'; 
 ?>

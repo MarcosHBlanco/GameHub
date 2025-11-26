@@ -209,7 +209,7 @@ label {
 	display: flex;
 	align-items: flex-end;
 	padding: 12px;
-	border-radius: 14px; /* keep the same radius */
+	border-radius: 14px; 
 }
 
 /* dark gradient so text is readable on any cover */

@@ -3,7 +3,7 @@ require_once __DIR__ . '/../config.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
-// Check for user query (?q=...)
+// Check for user query 
 $q = isset($_GET['q']) ? trim($_GET['q']) : '';
 if ($q === '') {
   echo json_encode(['results' => []]);
@@ -19,7 +19,7 @@ if ($key === '' || $key === false) {
   exit;
 }
 
-// Build RAWG URL with search_precise=true
+
 $params = [
   'key'            => $key,
   'search'         => $q,

@@ -118,13 +118,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       li.appendChild(content);
       list.appendChild(li);
-
-      // Optional: click on card (ignoring Reddit link)
-      li.addEventListener('click', (ev) => {
-        if (ev.target.tagName === 'A') return;
-        console.log('Open details for:', g.id, g.slug);
-        // e.g., window.location.href = 'game.php?id=' + (g.id ?? g.slug);
-      });
     });
   }
 

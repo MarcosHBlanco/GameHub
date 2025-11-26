@@ -31,7 +31,7 @@ INSERT INTO games (id, title, platform, notes, cover_url, favorite, played, crea
 (13, 'The Legend of Zelda: Ocarina of Time', 'Nintendo Switch, Nintendo 64', '', 'https://media.rawg.io/media/games/3a0/3a0c8e9ed3a711c542218831b893a0fa.jpg', 0, 0, '2025-11-10 15:06:51'),
 (14, 'Dark Souls: Remastered', 'PC, Xbox One', '', 'https://media.rawg.io/media/games/29c/29c6c21cc80ae1f5762a62ba2faeab.jpg', 1, 1, '2025-11-10 15:48:13'),
 (15, 'Mario Kart World', 'Nintendo Switch', 'Loved it', 'https://media.rawg.io/media/games/1b8/1b8e007c36040ae1f5762a62ba2faeab.jpg', 1, 1, '2025-11-11 00:27:58'),
-(16, 'Dark Cloud 2', 'PlayStation 4, PlayStation 2', 'haven\\'t played yet', 'https://media.rawg.io/media/screenshots/e3e/e3ed9222eb6f4e95a04c9f0f8e5ff3fd.jpg', 0, 0, '2025-11-17 14:49:29');
+(16, 'Dark Cloud 2', 'PlayStation 4, PlayStation 2', 'haven\t played yet', 'https://media.rawg.io/media/screenshots/e3e/e3ed9222eb6f4e95a04c9f0f8e5ff3fd.jpg', 0, 0, '2025-11-17 14:49:29');
 
 SQL;
 
